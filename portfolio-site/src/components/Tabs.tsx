@@ -6,15 +6,20 @@ import {
   useSensor,
   useSensors,
   PointerSensor,
-  KeyboardSensor
+  KeyboardSensor,
 } from '@dnd-kit/core';
 import { SortableContext, useSortable, horizontalListSortingStrategy, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
 export default function Tabs() {
   const { openTabs, activeTab, setActiveTab, closeTab, setOpenTabs } = useTab();
+  
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5, // 👈 drag only triggers if you move 5px+
+      },
+    }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
 
@@ -39,7 +44,7 @@ export default function Tabs() {
             backgroundColor: '#1A1A1A',
             height: '30px',
             fontSize: '15px',
-            borderBottom: '1px solid #333',
+            border: 'none',
           }}
         >
           {openTabs.map((tab) => (
@@ -60,6 +65,7 @@ export default function Tabs() {
 
 function SortableTab({ id, name, isActive, onClick, onClose }: any) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+
   const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -76,7 +82,15 @@ function SortableTab({ id, name, isActive, onClick, onClose }: any) {
   };
 
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners} onClick={onClick}>
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners} // 👈 attach listeners to the entire tab
+      onClick={(e) => {
+        onClick();
+      }}
+    >
       <span>{name}</span>
       {isActive && (
         <X
