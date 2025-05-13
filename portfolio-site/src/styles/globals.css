@@ -31,3 +31,9 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #555 transparent;
 }
+
+html, body {
+  overflow: hidden;
+  height: 100%;
+}
+

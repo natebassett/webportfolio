@@ -41,7 +41,7 @@ export default function Tabs() {
         <div
           style={{
             display: 'flex',
-            backgroundColor: '#1A1A1A',
+            backgroundColor: '#1E1E1E',
             height: '30px',
             fontSize: '15px',
             border: 'none',
@@ -75,7 +75,7 @@ function SortableTab({ id, name, isActive, onClick, onClose }: any) {
     cursor: 'pointer',
     borderBottom: isActive ? '2px solid #0078D4' : '2px solid transparent',
     height: '100%',
-    backgroundColor: '#1A1A1A',
+    backgroundColor: '#1E1E1E',
     color: isActive ? '#FFFFFF' : '#D9D9D9',
     userSelect: 'none',
     marginRight: '2px',
