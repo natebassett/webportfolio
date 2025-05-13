@@ -101,6 +101,7 @@ export default function Explorer() {
         style={{
           flex: 1,
           padding: '8px',
+          paddingTop: '24px',
           overflowY: 'auto',
           overflowX: 'auto', // Optional if you expect long filenames
           fontFamily: 'monospace',

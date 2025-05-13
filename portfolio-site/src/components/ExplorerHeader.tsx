@@ -9,13 +9,15 @@ export default function ExplorerHeader() {
       alignItems: 'center',
       justifyContent: 'space-between',
       padding: '0 8px',
-      color: '#A0A0A0',
+      color: '#D9D9D9',
       fontSize: '15px',
-      fontWeight: 'bold',
+    //   fontWeight: 'bold',
       letterSpacing: '0.05em',
     }}>
-      EXPLORER
-      <MoreHorizontal size={16} strokeWidth={2} />
+      <div style={{ paddingLeft: '20px', paddingTop: '20px' }}>EXPLORER</div>
+      <div style={{ paddingRight: '12px', paddingTop: '20px'  }}>
+        <MoreHorizontal size={24} strokeWidth={2} />
+      </div>
     </div>
   );
 }
