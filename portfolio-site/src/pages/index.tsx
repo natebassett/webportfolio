@@ -1,4 +1,5 @@
 import Explorer from '@/components/Explorer';
+import Sidebar1 from '@/components/Sidebar1';
 import Tabs from '@/components/Tabs';
 import EditorWindow from '@/components/EditorWindow';
 import Terminal from '@/components/Terminal';
@@ -9,19 +10,25 @@ export default function Home() {
   return (
     <TabProvider>
       <div className="h-screen flex flex-col bg-[#1E1E1E] text-[#D9D9D9] font-mono">
-        {/* Fixed header */}
+        {/* Header */}
         <Header />
 
-        {/* Main workspace */}
+        {/* Main workspace area */}
         <div className="flex flex-1 overflow-hidden">
-          <Explorer />
+          {/* Sidebar1 + Explorer */}
+          <div className="flex">
+            <Sidebar1 />
+            <Explorer />
+          </div>
 
+          {/* Main Content Area */}
           <div className="flex flex-col flex-1 overflow-hidden">
             <Tabs />
             <EditorWindow />
           </div>
         </div>
 
+        {/* Terminal */}
         <Terminal />
       </div>
     </TabProvider>
