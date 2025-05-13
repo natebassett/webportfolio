@@ -24,12 +24,13 @@ export default function Home() {
           {/* Main Content Area */}
           <div className="flex flex-col flex-1 overflow-hidden">
             <Tabs />
-            <EditorWindow />
+            <div className="flex-1 flex flex-col overflow-hidden">
+              <EditorWindow />
+              {/* Place Terminal INSIDE this area */}
+              <Terminal />
+            </div>
           </div>
         </div>
-
-        {/* Terminal */}
-        <Terminal />
       </div>
     </TabProvider>
   );
