@@ -10,7 +10,7 @@ export default function ExplorerHeader() {
       justifyContent: 'space-between',
       padding: '0 8px',
       color: '#A0A0A0',
-      fontSize: '11px',
+      fontSize: '15px',
       fontWeight: 'bold',
       letterSpacing: '0.05em',
     }}>

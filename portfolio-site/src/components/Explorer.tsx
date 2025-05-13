@@ -29,13 +29,21 @@ function FileItem({ file, depth = 0 }: { file: FileType; depth?: number }) {
           <div style={{ flexShrink: 0 }}>
             {open ? <ChevronDown size={12} strokeWidth={2} /> : <ChevronRight size={12} strokeWidth={2} />}
           </div>
-          <span style={{ marginLeft: '4px', flex: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          <span
+            style={{
+              marginLeft: '4px',
+              flex: 1,
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
+          >
             {file.name}
           </span>
         </div>
         {open && (
           <div>
-            {file.children?.map(child => (
+            {file.children?.map((child) => (
               <FileItem key={child.id} file={child} depth={depth + 1} />
             ))}
           </div>
@@ -59,7 +67,15 @@ function FileItem({ file, depth = 0 }: { file: FileType; depth?: number }) {
       }}
       onClick={() => openFile(file)}
     >
-      <span style={{ marginLeft: '16px', flex: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+      <span
+        style={{
+          marginLeft: '16px',
+          flex: 1,
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        }}
+      >
         {file.name}
       </span>
     </div>
@@ -70,28 +86,29 @@ export default function Explorer() {
   return (
     <div
       style={{
-        width: '280px',
-        minWidth: '280px',
-        maxWidth: '280px',
+        width: '300px',
+        minWidth: '300px',
+        maxWidth: '300px',
         backgroundColor: '#2C2C54',
         display: 'flex',
         flexDirection: 'column',
-        overflow: 'hidden', // ✅ Locks sidebar no matter what
+        overflow: 'hidden',
       }}
     >
       <ExplorerHeader />
       <div
+        className="custom-scroll"
         style={{
           flex: 1,
           padding: '8px',
           overflowY: 'auto',
-          overflowX: 'hidden', // ✅ Removes horizontal scroll inside list area
+          overflowX: 'auto', // Optional if you expect long filenames
           fontFamily: 'monospace',
-          fontSize: '12px',
+          fontSize: '15px',
           lineHeight: '1.2',
         }}
       >
-        {files.map(file => (
+        {files.map((file) => (
           <FileItem key={file.id} file={file} />
         ))}
       </div>
