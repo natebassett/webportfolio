@@ -1,3 +1,5 @@
+import languagesJson from '@/code-snippets/languages.json';
+
 export interface FileType {
     id: string;
     name: string;
@@ -121,7 +123,7 @@ export interface FileType {
                   id: 'languages',
                   name: 'languages.json',
                   path: '/webportfolio/webportfolio/src/languages.json',
-                  content: '{ "English": "Native", "German": "Intermediate", "Welsh": "Basic" }',
+                  content: JSON.stringify(languagesJson, null, 2),
                   type: 'file',
                 },
                 {
