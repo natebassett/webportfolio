@@ -1,31 +1,51 @@
 import { useTab } from '@/contexts/TabContext';
+import { useEffect, useState } from 'react';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import js from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript';
 import json from 'react-syntax-highlighter/dist/cjs/languages/hljs/json';
+import markdown from 'react-syntax-highlighter/dist/cjs/languages/hljs/markdown';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
-// Register JSON language
+// Register languages
 SyntaxHighlighter.registerLanguage('json', json);
+SyntaxHighlighter.registerLanguage('javascript', js);
+SyntaxHighlighter.registerLanguage('markdown', markdown);
 
 export default function EditorWindow() {
   const { activeTab } = useTab();
+  const [fileContent, setFileContent] = useState<string>('');
+
+  useEffect(() => {
+    if (activeTab?.url) {
+      fetch(activeTab.url)
+        .then(res => res.text())
+        .then(text => setFileContent(text))
+        .catch(() => setFileContent('// Failed to load file.'));
+    } else if (activeTab) {
+      setFileContent(activeTab.content);
+    }
+  }, [activeTab]);
 
   if (!activeTab) {
     return <div className="flex-1 bg-gray-900" />;
   }
 
-  // Hardcode as JSON (or you can dynamically detect based on file name extension)
-  const isJson = activeTab.name.endsWith('.json');
-  const language = isJson ? 'json' : 'plaintext';
+  const getLanguage = (name: string) => {
+    if (name.endsWith('.json')) return 'json';
+    if (name.endsWith('.js')) return 'javascript';
+    if (name.endsWith('.md')) return 'markdown';
+    return 'plaintext';
+  };
 
   return (
     <div
       className="flex-1 bg-gray-900 overflow-auto"
       style={{
-        padding: '8px 8px', 
+        padding: '4px 8px',
       }}
     >
       <SyntaxHighlighter
-        language={language}
+        language={getLanguage(activeTab.name)}
         style={atomOneDark}
         customStyle={{
           backgroundColor: 'transparent',
@@ -37,7 +57,7 @@ export default function EditorWindow() {
         }}
         showLineNumbers={false}
       >
-        {activeTab.content}
+        {fileContent}
       </SyntaxHighlighter>
     </div>
   );

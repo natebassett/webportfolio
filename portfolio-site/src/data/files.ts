@@ -1,4 +1,5 @@
-import languagesJson from '@/code-snippets/languages.json';
+import languagesJson from '../../public/code-snippets/languages.json';
+import contactsJs from '@/code-snippets/contacts.js?raw';
 
 export interface FileType {
     id: string;
@@ -7,6 +8,7 @@ export interface FileType {
     content: string;
     type: 'file' | 'folder' | 'exe';
     children?: FileType[];
+    url?: string;
   }
   
   export const files: FileType[] = [
@@ -130,8 +132,9 @@ export interface FileType {
                   id: 'contacts',
                   name: 'contacts.js',
                   path: '/webportfolio/webportfolio/src/contacts.js',
-                  content: 'const contacts = {};',
+                  content: '',
                   type: 'file',
+                  url: '/code-snippets/contacts.js',
                 },
                 {
                   id: 'assets',
