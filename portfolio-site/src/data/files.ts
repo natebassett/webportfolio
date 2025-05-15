@@ -78,8 +78,9 @@ export interface FileType {
                   id: 'about',
                   name: 'aboutMe.md',
                   path: '/webportfolio/webportfolio/src/aboutMe.md',
-                  content: '# About Me\n\n...',
+                  content: '',
                   type: 'file',
+                  url: '/code-snippets/aboutMe.md',
                 },
                 {
                   id: 'case-studies',

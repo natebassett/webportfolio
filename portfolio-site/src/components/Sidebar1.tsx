@@ -10,7 +10,7 @@ import {
   
   export default function Sidebar1() {
     return (
-      <div className="w-12 bg-[#1A1A40] flex flex-col justify-between items-centerv text-[#A0A0A0]" style={{ paddingTop: '24px', paddingBottom: '12px' }}>
+      <div className="w-12 bg-[#1A1A40] flex flex-col justify-between items-centerv text-[#A0A0A0]" style={{ paddingTop: '18px', paddingBottom: '12px' }}>
          {/* Top icons with side margin */}
       <div className="flex flex-col items-center" style={{ gap: '24px' }}>
         <Search size={24} strokeWidth={2} style={{ marginLeft: '4px', marginRight: '4px' }} />
