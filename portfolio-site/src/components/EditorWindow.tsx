@@ -39,27 +39,26 @@ export default function EditorWindow() {
   };
 
   return (
-    <div
-      className="flex-1 bg-gray-900 overflow-auto custom-scroll"
-      style={{
-        padding: '4px 8px',
-      }}
-    >
-      <SyntaxHighlighter
-        language={getLanguage(activeTab.name)}
-        style={atomOneDark}
-        customStyle={{
-          backgroundColor: 'transparent',
-          padding: 0,
-          margin: 0,
-          fontSize: '16px',
-          fontFamily: 'Fira Code, monospace',
-          lineHeight: '1.6',
-        }}
-        showLineNumbers={false}
-      >
-        {fileContent}
-      </SyntaxHighlighter>
+    <div className="custom-scroll overflow-auto flex-1 w-full h-full bg-gray-900">
+      <div className="min-h-full w-full px-2 py-1">
+        <SyntaxHighlighter
+          language={getLanguage(activeTab.name)}
+          style={atomOneDark}
+          customStyle={{
+            backgroundColor: 'transparent',
+            padding: 0,
+            margin: 0,
+            fontSize: '16px',
+            fontFamily: 'Fira Code, monospace',
+            lineHeight: '1.6',
+            minHeight: '100%',
+          }}
+          showLineNumbers={false}
+        >
+          {fileContent}
+        </SyntaxHighlighter>
+      </div>
     </div>
   );
 }
+

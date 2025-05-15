@@ -2,39 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Reset margins, paddings, and scroll behavior */
+html,
+body,
+#__next {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Global font and color */
 body {
   font-family: 'Fira Code', monospace;
   background-color: #1E1E1E;
   color: #D9D9D9;
 }
 
-.custom-scroll::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-.custom-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scroll::-webkit-scrollbar-thumb {
-  background: #555;
-  border-radius: 3px;
-}
-
-.custom-scroll::-webkit-scrollbar-thumb:hover {
-  background: #888;
-}
-
-/* Firefox */
+/* Clean and consistent custom scrollbar */
 .custom-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #555 transparent;
-}
-
-html, body {
-  overflow: hidden;
-  height: 100%;
+  scrollbar-color: rgba(128, 128, 128, 0.4) transparent;
 }
 
 .custom-scroll::-webkit-scrollbar {
@@ -49,10 +37,8 @@ html, body {
 .custom-scroll::-webkit-scrollbar-thumb {
   background-color: rgba(128, 128, 128, 0.4);
   border-radius: 3px;
-  border: none;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb:hover {
   background-color: rgba(128, 128, 128, 0.7);
 }
-
