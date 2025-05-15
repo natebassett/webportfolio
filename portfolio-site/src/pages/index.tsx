@@ -26,7 +26,6 @@ export default function Home() {
             <Tabs />
             <div className="flex-1 flex flex-col overflow-hidden">
               <EditorWindow />
-              {/* Place Terminal INSIDE this area */}
               <Terminal />
             </div>
           </div>
