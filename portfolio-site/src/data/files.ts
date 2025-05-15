@@ -1,6 +1,3 @@
-import languagesJson from '../../public/code-snippets/languages.json';
-import contactsJs from '@/code-snippets/contacts.js?raw';
-
 export interface FileType {
     id: string;
     name: string;
@@ -118,15 +115,18 @@ export interface FileType {
                   id: 'tech',
                   name: 'techStack.tsx',
                   path: '/webportfolio/webportfolio/src/techStack.tsx',
-                  content: 'const tech = ["React", "Spring", "Python"];',
+                  content: '',
                   type: 'file',
+                  url: '/code-snippets/techStack.tsx',
                 },
                 {
                   id: 'languages',
                   name: 'languages.json',
                   path: '/webportfolio/webportfolio/src/languages.json',
-                  content: JSON.stringify(languagesJson, null, 2),
+                //   content: JSON.stringify(languagesJson, null, 2),
+                  content: '', 
                   type: 'file',
+                  url: 'code-snippets/languages.json'
                 },
                 {
                   id: 'contacts',

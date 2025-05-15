@@ -34,12 +34,13 @@ export default function EditorWindow() {
     if (name.endsWith('.json')) return 'json';
     if (name.endsWith('.js')) return 'javascript';
     if (name.endsWith('.md')) return 'markdown';
+    if (name.endsWith('.tsx')) return 'typescript';
     return 'plaintext';
   };
 
   return (
     <div
-      className="flex-1 bg-gray-900 overflow-auto"
+      className="flex-1 bg-gray-900 overflow-auto custom-scroll"
       style={{
         padding: '4px 8px',
       }}
