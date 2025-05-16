@@ -1,17 +1,7 @@
 import React from 'react';
+import Image from 'next/image';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import Image from 'next/image';
-
-import js from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript';
-import json from 'react-syntax-highlighter/dist/cjs/languages/hljs/json';
-import markdown from 'react-syntax-highlighter/dist/cjs/languages/hljs/markdown';
-
-SyntaxHighlighter.registerLanguage('json', json);
-SyntaxHighlighter.registerLanguage('javascript', js);
-SyntaxHighlighter.registerLanguage('markdown', markdown);
 
 interface FileRendererProps {
   fileName: string;
@@ -21,6 +11,36 @@ interface FileRendererProps {
 export default function FileRenderer({ fileName, fileContent }: FileRendererProps) {
   const isMarkdown = fileName.endsWith('.md');
 
+  if (isMarkdown) {
+    const lines = fileContent.split('\n');
+
+    return (
+      <div className="font-mono text-[#D9D9D9] text-sm whitespace-pre leading-snug pl-6">
+        {lines.map((line, index) => {
+          const imageMatch = line.match(/!\[.*\]\((.*)\)/);
+
+          if (imageMatch) {
+            const src = imageMatch[1];
+            return (
+              <div key={index} className="my-4 flex justify-center">
+                <Image
+                  src={src}
+                  alt="Markdown image"
+                  width={120}
+                  height={120}
+                  className="rounded-full object-cover"
+                  priority
+                />
+              </div>
+            );
+          }
+
+          return <div key={index}>{line}</div>;
+        })}
+      </div>
+    );
+  }
+
   const getLanguage = (name: string) => {
     if (name.endsWith('.json')) return 'json';
     if (name.endsWith('.js')) return 'javascript';
@@ -28,33 +48,6 @@ export default function FileRenderer({ fileName, fileContent }: FileRendererProp
     if (name.endsWith('.tsx')) return 'typescript';
     return 'plaintext';
   };
-
-  if (isMarkdown) {
-    return (
-      <div className="prose prose-invert max-w-none">
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          components={{
-            img: ({ node, ...props }) => {
-              const src = typeof props.src === 'string' ? props.src : '/assets/profilePic.jpg';
-              return (
-                <Image
-                  src={src}
-                  alt={props.alt ?? 'Profile image'}
-                  width={120}
-                  height={120}
-                  className="rounded-full mx-auto my-4"
-                  priority
-                />
-              );
-            },
-          }}
-        >
-          {fileContent}
-        </ReactMarkdown>
-      </div>
-    );
-  }
 
   return (
     <SyntaxHighlighter
