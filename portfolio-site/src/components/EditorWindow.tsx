@@ -77,8 +77,8 @@ export default function EditorWindow() {
               <Image
                 src={src}
                 alt="Markdown image"
-                width={120}
-                height={120}
+                width={170}
+                height={170}
                 className="rounded-full object-cover"
                 priority
               />

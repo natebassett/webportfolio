@@ -17,4 +17,5 @@ taekwondo or the gym. I also travel when I can.
 
 Currently based in Cardiff, Wales.
 
+
 ![profile](/assets/profilePic.jpg)
